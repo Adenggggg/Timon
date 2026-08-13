@@ -19,7 +19,7 @@ export default function FocusPage() {
   const firstName = user?.name?.split(" ")[0] ?? "there";
 
   return (
-    <div className="flex gap-8">
+    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
       <div className="flex-1 min-w-0 max-w-2xl">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-gray-900">Good morning, {firstName}</h1>
@@ -79,20 +79,22 @@ export default function FocusPage() {
         </div>
       </div>
 
-      <div className="w-64 shrink-0 space-y-4">
-        <div className="rounded-xl bg-gray-900 text-white p-5 flex items-center gap-4">
-          <Mail size={20} />
-          <div>
-            <p className="text-2xl font-semibold leading-none">{emails.filter((e) => e.unread).length}</p>
-            <p className="text-xs text-gray-300 mt-1">Unread email</p>
+      <div className="w-full lg:w-64 shrink-0 space-y-4">
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
+          <div className="rounded-xl bg-gray-900 text-white p-5 flex items-center gap-4">
+            <Mail size={20} className="shrink-0" />
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold leading-none">{emails.filter((e) => e.unread).length}</p>
+              <p className="text-xs text-gray-300 mt-1 truncate">Unread email</p>
+            </div>
           </div>
-        </div>
 
-        <div className="rounded-xl bg-gray-100 text-gray-900 p-5 flex items-center gap-4">
-          <MessageSquare size={20} className="text-gray-500" />
-          <div>
-            <p className="text-2xl font-semibold leading-none">{messages.filter((m) => m.unread).length}</p>
-            <p className="text-xs text-gray-500 mt-1">Unread messages</p>
+          <div className="rounded-xl bg-gray-100 text-gray-900 p-5 flex items-center gap-4">
+            <MessageSquare size={20} className="text-gray-500 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold leading-none">{messages.filter((m) => m.unread).length}</p>
+              <p className="text-xs text-gray-500 mt-1 truncate">Unread messages</p>
+            </div>
           </div>
         </div>
 
