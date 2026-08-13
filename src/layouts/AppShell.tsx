@@ -9,7 +9,6 @@ export default function AppShell() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const location = useLocation();
 
-  // Close the drawer whenever the route changes.
   useEffect(() => {
     setMobileNavOpen(false);
   }, [location.pathname]);
@@ -58,12 +57,12 @@ export default function AppShell() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 flex flex-col text-gray-900">
-      <div className="h-1 w-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 shrink-0" />
+    <div className="h-screen w-full bg-gray-50 flex flex-col text-gray-900 overflow-hidden">
+      <div className="h-1 w-full bg-linear-to-r from-indigo-600 via-violet-600 to-purple-600 shrink-0" />
 
       <div className="flex flex-1 min-h-0 relative">
         {/* Desktop sidebar */}
-        <aside className="hidden lg:flex w-56 shrink-0 border-r border-gray-200 bg-white p-4 flex-col gap-1">
+        <aside className="hidden lg:flex w-56 shrink-0 border-r border-gray-200 bg-white p-4 flex-col gap-1 sticky top-0 h-full overflow-y-auto">
           {sidebarContent}
         </aside>
 
@@ -75,7 +74,7 @@ export default function AppShell() {
           />
         )}
         <aside
-          className={`lg:hidden fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 p-4 flex flex-col gap-1 z-30 transform transition-transform duration-200 ${
+          className={`lg:hidden fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 p-4 flex flex-col gap-1 z-30 transform transition-transform duration-200 overflow-y-auto ${
             mobileNavOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >

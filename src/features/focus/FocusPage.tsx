@@ -1,4 +1,4 @@
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, AlertCircle, Circle, CircleDot } from "lucide-react";
 import { useFocusPlan } from "./useFocusPlan";
 import { emails, messages, projects, priorityStyle } from "@/data/mockData";
 import { useAuth } from "@/features/auth/AuthContext";
@@ -18,9 +18,14 @@ export default function FocusPage() {
   const tasksLeft = totalCount - doneCount;
   const firstName = user?.name?.split(" ")[0] ?? "there";
 
+  const openTasks = allTasks.filter((t) => !t.done);
+  const highCount = openTasks.filter((t) => t.priority === "high").length;
+  const medCount = openTasks.filter((t) => t.priority === "medium").length;
+  const lowCount = openTasks.filter((t) => t.priority === "low").length;
+
   return (
-    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-      <div className="flex-1 min-w-0 max-w-2xl">
+    <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 max-w-7xl">
+      <div className="flex-1 min-w-0">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-gray-900">Good morning, {firstName}</h1>
           <p className="text-gray-500 mt-1">Here's what deserves your attention today.</p>
@@ -79,7 +84,7 @@ export default function FocusPage() {
         </div>
       </div>
 
-      <div className="w-full lg:w-64 shrink-0 space-y-4">
+      <div className="w-full lg:w-80 shrink-0 space-y-4">
         <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
           <div className="rounded-xl bg-gray-900 text-white p-5 flex items-center gap-4">
             <Mail size={20} className="shrink-0" />
@@ -106,6 +111,53 @@ export default function FocusPage() {
           <p className="text-xs text-gray-400">
             {percentDone}% complete · {tasksLeft} task{tasksLeft === 1 ? "" : "s"} left
           </p>
+        </div>
+
+        <div className="rounded-xl border border-gray-200 bg-white p-5">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">Priority breakdown</p>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <AlertCircle size={15} className="text-red-500 shrink-0" />
+              <span className="text-sm text-gray-600 flex-1">High priority</span>
+              <span className="text-sm font-semibold text-gray-900">{highCount}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <CircleDot size={15} className="text-amber-500 shrink-0" />
+              <span className="text-sm text-gray-600 flex-1">Medium priority</span>
+              <span className="text-sm font-semibold text-gray-900">{medCount}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Circle size={15} className="text-gray-400 shrink-0" />
+              <span className="text-sm text-gray-600 flex-1">Low priority</span>
+              <span className="text-sm font-semibold text-gray-900">{lowCount}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-gray-200 bg-white p-5">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">By project</p>
+          <div className="space-y-3">
+            {projects.map((p) => {
+              const open = p.tasks.filter((t) => !t.done).length;
+              return (
+                <div key={p.id} className="flex items-center gap-3">
+                  <span
+                    className={`w-2 h-2 rounded-full shrink-0 ${
+                      p.color === "coral"
+                        ? "bg-orange-500"
+                        : p.color === "blue"
+                          ? "bg-blue-500"
+                          : p.color === "amber"
+                            ? "bg-amber-500"
+                            : "bg-teal-500"
+                    }`}
+                  />
+                  <span className="text-sm text-gray-600 flex-1 truncate">{p.name}</span>
+                  <span className="text-sm font-semibold text-gray-900">{open}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
