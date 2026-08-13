@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Compass } from "lucide-react";
 
 export default function AuthLayout({
   title,
@@ -14,9 +13,7 @@ export default function AuthLayout({
     <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-9 h-9 rounded-xl bg-gray-900 flex items-center justify-center">
-            <Compass size={18} className="text-white" />
-          </div>
+          <img src="/Timon.png" alt="Timon" className="w-9 h-9 rounded-xl object-cover" />
           <span className="text-lg font-semibold text-gray-900">Timon</span>
         </div>
         <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-7">

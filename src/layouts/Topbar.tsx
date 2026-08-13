@@ -43,7 +43,7 @@ export default function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
         <Menu size={19} />
       </button>
 
-      <div className="flex-1 min-w-0 max-w-md">
+      <div className="w-full max-w-md">
         <div className="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
           <Search size={15} className="text-gray-400 shrink-0" />
           <input
@@ -54,12 +54,13 @@ export default function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
         </div>
       </div>
 
-      <button className="relative w-9 h-9 shrink-0 flex items-center justify-center rounded-lg hover:bg-gray-100 text-gray-500 transition-colors">
-        <Bell size={17} />
-        <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-red-500" />
-      </button>
+      <div className="ml-auto flex items-center gap-3 shrink-0">
+        <button className="relative w-9 h-9 shrink-0 flex items-center justify-center rounded-lg hover:bg-gray-100 text-gray-500 transition-colors">
+          <Bell size={17} />
+          <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-red-500" />
+        </button>
 
-      <div className="relative shrink-0" ref={menuRef}>
+        <div className="relative shrink-0" ref={menuRef}>
         <button
           onClick={() => setMenuOpen((o) => !o)}
           className="flex items-center gap-2.5 pl-1 sm:pl-2 pr-1 py-1 rounded-lg hover:bg-gray-100 transition-colors"
@@ -96,6 +97,7 @@ export default function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
             </button>
           </div>
         )}
+        </div>
       </div>
     </header>
   );

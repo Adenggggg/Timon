@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, NavLink, useLocation } from "react-router-dom";
-import { Compass, Target, Inbox, MessageSquare, FolderKanban, Settings as SettingsIcon, X } from "lucide-react";
+import { Target, Inbox, MessageSquare, FolderKanban, Settings as SettingsIcon, X } from "lucide-react";
 import NavItem from "./NavItem";
 import Topbar from "./Topbar";
 import { emails, messages, projects } from "@/data/mockData";
@@ -21,9 +21,7 @@ export default function AppShell() {
     <>
       <div className="flex items-center justify-between px-2 mb-6">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gray-900 flex items-center justify-center">
-            <Compass size={15} className="text-white" />
-          </div>
+          <img src="/Timon.png" alt="Timon" className="w-7 h-7 rounded-lg object-cover" />
           <span className="font-semibold">Timon</span>
         </div>
         <button
@@ -58,15 +56,12 @@ export default function AppShell() {
 
   return (
     <div className="h-screen w-full bg-gray-50 flex flex-col text-gray-900 overflow-hidden">
-      <div className="h-1 w-full bg-linear-to-r from-indigo-600 via-violet-600 to-purple-600 shrink-0" />
-
       <div className="flex flex-1 min-h-0 relative">
         {/* Desktop sidebar */}
         <aside className="hidden lg:flex w-56 shrink-0 border-r border-gray-200 bg-white p-4 flex-col gap-1 sticky top-0 h-full overflow-y-auto">
           {sidebarContent}
         </aside>
 
-        {/* Mobile drawer + overlay */}
         {mobileNavOpen && (
           <div
             className="lg:hidden fixed inset-0 bg-black/30 z-20"
