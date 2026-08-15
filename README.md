@@ -19,11 +19,3 @@ npm install
 npm run dev
 ```
 
-Then open the printed local URL.
-
-## Scripts
-
-- `npm run dev` — start the dev server
-- `npm run build` — typecheck (`tsc -b`) then production build
-- `npm run preview` — preview the production build locally
-- `npm run lint` — run oxlint
